@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { userError } from "./user";
 import "react-toastify/dist/ReactToastify.css";
+import { AppContext } from "./Context";
 
-const Item = ({ ele: { id, task }, setData }) => {
+const Item = ({ ele: { id, task } }) => {
 
 
-const[check, setCheck]= useState(false)
-// console.log(check)
+
+  const { setData } = useContext(AppContext);
+  const [check, setCheck] = useState(false);
+
+
 
   const handleClick = () => {
     setData((prev) => {
@@ -18,32 +22,33 @@ const[check, setCheck]= useState(false)
     userError("Deleted Sucessfully");
   };
 
-
-
-const handleCheck = (e)=>{
-
-  return setCheck(e.target.checked)
-}
-
-
+  const handleCheck = (e) => {
+    return setCheck(e.target.checked);
+  };
 
   return (
     <>
-    <div className="items">
-      <div className="single-item">
-        <input type="checkbox" onChange={handleCheck} checked={check}/>
-        <p style={{ textTransform: "capitalize", textDecoration: check ? "line-through" : "none" }}>{task}</p>
+      <div className="items">
+        <div className="single-item">
+          <input type="checkbox" onChange={handleCheck} checked={check} />
+          <p
+            style={{
+              textTransform: "capitalize",
+              textDecoration: check ? "line-through" : "none",
+            }}
+          >
+            {task}
+          </p>
 
-      {/* check ? linethorugh : "" */}
-
-        <button onClick={handleClick} type="button" className="btn-remove-btn">
-          Delete
-        </button>
+          <button
+            onClick={handleClick}
+            type="button"
+            className="btn-remove-btn"
+          >
+            Delete
+          </button>
+        </div>
       </div>
-
-     
-    </div>
-  
     </>
   );
 };

@@ -1,16 +1,15 @@
-import React from "react"
-import Form from "./Form"
-
+import React from "react";
+import Form from "./Form";
+import Context from "./Context";
 
 function App() {
- 
-
   return (
     <>
-    <Form/>
-  
+      <Context>
+        <Form />
+      </Context>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

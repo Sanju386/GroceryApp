@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Item from "./Item";
 import { v4 as uuidv4 } from "uuid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { userSucess } from "./user";
+import { AppContext } from "./Context";
 
 const Form = () => {
-  const [name, setName] = useState("");
+  const abc = useContext(AppContext);
+  const { name, setName, data, setData } = abc;
   // console.log(name)
-
-  const [data, setData] = useState([]);
-  //   console.log(data);
 
   const handleChange = (e) => {
     return setName(e.target.value);
@@ -53,7 +52,8 @@ const Form = () => {
             type="text"
             className="form-input"
             onChange={handleChange}
-            value={name} required
+            value={name}
+            required
           />
           <button type="submit" className="btn">
             add item
